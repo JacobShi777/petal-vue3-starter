@@ -6,4 +6,5 @@ const userStore = useUserStore()
 <template>
   <div>Dashboard</div>
   {{ userStore.username }}
+  <svg-icon name="dashboard" />
 </template>
