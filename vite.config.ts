@@ -1,4 +1,4 @@
-import { ConfigEnv, defineConfig } from 'vite'
+import { type ConfigEnv, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
@@ -7,8 +7,11 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       port: 7101,
       open: true,
     },
-    plugins: [
-      vue()
-    ],
+    plugins: [vue()],
+    resolve: {
+      alias: {
+        '@': '/src',
+      },
+    },
   }
 })

@@ -1,0 +1,4 @@
+# 自测: 如果这里不配置dist，dist中的文件在editor.formatOnSave时会被格式化；但pnpm format不会格式化dist中的文件
+dist
+node_modules
+pnpm-lock.yaml
