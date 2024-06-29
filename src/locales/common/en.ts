@@ -3,5 +3,6 @@ export default {
   'common.theme.dark': 'Dark',
   'common.theme.light-green': 'Light Green',
 
-  'common.username': 'Username',
+  'common.user.logout': 'Logout',
+  'common.user.username': 'Username',
 }

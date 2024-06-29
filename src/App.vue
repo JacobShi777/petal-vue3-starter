@@ -15,11 +15,7 @@ themeStore.initTheme()
 </script>
 
 <template>
-  <div>
-    <RouterLink to="/">Go to Dashboard</RouterLink>
-    <RouterLink to="/user">Go to User</RouterLink>
-    <el-config-provider :locale="lang">
-      <RouterView />
-    </el-config-provider>
-  </div>
+  <el-config-provider :locale="lang">
+    <RouterView />
+  </el-config-provider>
 </template>

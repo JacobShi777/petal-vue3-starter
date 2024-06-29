@@ -12,25 +12,23 @@ const command = (command: Locale) => {
 </script>
 
 <template>
-  <div>
-    <el-dropdown @command="command">
-      <span class="dropdown-link">
-        <svg-icon name="global"></svg-icon>
-      </span>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item
-            v-for="item in localeList"
-            :key="item.key"
-            :command="item.key"
-            :disabled="item.key === localeStore.locale"
-          >
-            {{ item.name }}
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </div>
+  <el-dropdown @command="command">
+    <span class="dropdown-link">
+      <svg-icon name="global"></svg-icon>
+    </span>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item
+          v-for="item in localeList"
+          :key="item.key"
+          :command="item.key"
+          :disabled="item.key === localeStore.locale"
+        >
+          {{ item.name }}
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 
 <style lang="scss" scoped>

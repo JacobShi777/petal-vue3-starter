@@ -1,2 +1,15 @@
 @import './dark/element-plus.css';
 @import './light-green/element-plus.css';
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#app {
+  height: 100%;
+}

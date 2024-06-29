@@ -9,25 +9,23 @@ const command = (command: Theme) => {
 </script>
 
 <template>
-  <div>
-    <el-dropdown @command="command">
-      <span class="dropdown-link">
-        <svg-icon name="theme"></svg-icon>
-      </span>
-      <template #dropdown>
-        <el-dropdown-menu>
-          <el-dropdown-item
-            v-for="item in themeList"
-            :key="item.key"
-            :command="item.key"
-            :disabled="item.key === themeStore.theme"
-          >
-            {{ $t(item.name) }}
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </template>
-    </el-dropdown>
-  </div>
+  <el-dropdown @command="command">
+    <span class="dropdown-link">
+      <svg-icon name="theme"></svg-icon>
+    </span>
+    <template #dropdown>
+      <el-dropdown-menu>
+        <el-dropdown-item
+          v-for="item in themeList"
+          :key="item.key"
+          :command="item.key"
+          :disabled="item.key === themeStore.theme"
+        >
+          {{ $t(item.name) }}
+        </el-dropdown-item>
+      </el-dropdown-menu>
+    </template>
+  </el-dropdown>
 </template>
 
 <style lang="scss" scoped>
@@ -36,8 +34,8 @@ const command = (command: Theme) => {
   cursor: pointer;
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
 }
 </style>
