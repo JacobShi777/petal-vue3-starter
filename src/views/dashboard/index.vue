@@ -1,35 +1,24 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { useUserStore } from '@/store/user'
-import { useLocaleStore } from '@/store/locale'
-import { useThemeStore } from '@/store/theme'
+import LocaleSwitch from '@/components/LocaleSwitch/index.vue'
+import ThemeSwitch from '@/components/ThemeSwitch/index.vue'
+import { useI18n } from 'vue-i18n'
 
-const userStore = useUserStore()
-
-const localeStore = useLocaleStore()
-const toggleLanguage = () => {
-  localeStore.changeLocale(localeStore.locale === 'zhCn' ? 'en' : 'zhCn')
-}
-
-const themeStore = useThemeStore()
+const { t } = useI18n()
 </script>
 
 <template>
   <div class="dashboard-page">
-    <div>Dashboard</div>
-    {{ userStore.username }}
-    <svg-icon name="dashboard" />
-    <el-button @click="toggleLanguage">切换语言</el-button>
-    {{ localeStore.locale }}
     <el-date-picker type="date" placeholder="Pick a day" />
-    <el-select v-model="themeStore.theme" @change="themeStore.setTheme(themeStore.theme)" style="width: 100px">
-      <el-option value="light" label="浅色"></el-option>
-      <el-option value="dark" label="深色"></el-option>
-      <el-option value="light-green" label="浅绿"></el-option>
-    </el-select>
-    <!-- <el-button @click="themeStore.setTheme(themeStore.theme === 'light' ? 'dark' : 'light')">切换主题</el-button> -->
-    {{ themeStore.theme }}
     <el-button type="primary">配色</el-button>
+    <ThemeSwitch />
+    <div style="height: 10px"></div>
+    <LocaleSwitch />
+    <el-input :placeholder="t('common.username')"></el-input>
+    {{ $t('common.username') }}
+    <div>
+      {{ t('common.theme.light') }}
+    </div>
   </div>
 </template>
 

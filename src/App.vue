@@ -7,7 +7,7 @@ import { useThemeStore } from './store/theme'
 
 const localeStore = useLocaleStore()
 const lang = computed(() => {
-  return localeStore.locale === 'zhCn' ? zhCn : en
+  return localeStore.locale === 'zh-cn' ? zhCn : en
 })
 
 const themeStore = useThemeStore()

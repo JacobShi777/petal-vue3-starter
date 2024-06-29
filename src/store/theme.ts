@@ -1,14 +1,24 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-type ThemeState = 'light' | 'dark' | 'light-green'
+export type Theme = 'light' | 'dark' | 'light-green'
+export interface ThemeItem {
+  key: Theme
+  name: string
+}
+
+export const themeList: ThemeItem[] = [
+  { key: 'light', name: 'common.theme.light' },
+  { key: 'dark', name: 'common.theme.dark' },
+  { key: 'light-green', name: 'common.theme.light-green' },
+]
 
 export const useThemeStore = defineStore(
   'theme',
   () => {
-    const theme = ref<ThemeState>('light')
+    const theme = ref<Theme>('light')
 
-    function setTheme(_theme: ThemeState) {
+    function setTheme(_theme: Theme) {
       theme.value = _theme
       document.documentElement.className = _theme
     }
