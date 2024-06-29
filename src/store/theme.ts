@@ -1,6 +1,5 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { th } from 'element-plus/es/locales.mjs'
 
 type ThemeState = 'light' | 'dark' | 'light-green'
 
