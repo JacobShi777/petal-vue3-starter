@@ -1,6 +1,10 @@
 import { createApp } from 'vue'
-// 从一个单文件组件中导入根组件
 import App from './App.vue'
+import router from './router'
+import { createPinia } from 'pinia'
+
+const pinia = createPinia()
 
 const app = createApp(App)
-app.mount('#app')
+
+app.use(router).use(pinia).mount('#app')
