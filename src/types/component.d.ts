@@ -7,4 +7,3 @@ declare module 'vue' {
 }
 
 export {}
-// export type SvgIconInstance = InstanceType<typeof SvgIcon>
