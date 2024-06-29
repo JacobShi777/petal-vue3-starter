@@ -4,6 +4,10 @@ import ManageLayout from '@/layouts/manage/index.vue'
 
 const routes = [
   {
+    path: '/login',
+    component: () => import('@/views/login/index.vue'),
+  },
+  {
     path: '/',
     component: ManageLayout,
     children: [

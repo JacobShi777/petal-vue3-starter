@@ -8,7 +8,7 @@ export interface LocaleItem {
 }
 
 export const localeList: LocaleItem[] = [
-  { key: 'zh-cn', name: '中文' },
+  { key: 'zh-cn', name: '简体中文' },
   { key: 'en', name: 'English' },
 ]
 

@@ -5,12 +5,20 @@ import path from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { viteMockServe } from 'vite-plugin-mock'
 
 export default defineConfig(({ mode }: ConfigEnv) => {
   return {
     server: {
       port: 7101,
       open: true,
+      proxy: {
+        '/api': {
+          target: 'http://localhost:7101',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
     },
     plugins: [
       vue(),
@@ -26,6 +34,10 @@ export default defineConfig(({ mode }: ConfigEnv) => {
       }),
       Components({
         resolvers: [ElementPlusResolver()],
+      }),
+      viteMockServe({
+        mockPath: 'mock',
+        enable: true,
       }),
     ],
     resolve: {
