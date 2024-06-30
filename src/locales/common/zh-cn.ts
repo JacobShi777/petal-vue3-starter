@@ -9,4 +9,5 @@ export default {
   'common.user.register': '注册',
   'common.user.username': '用户名',
   'common.user.password': '密码',
+  'common.user.login.required': '请先登录',
 }

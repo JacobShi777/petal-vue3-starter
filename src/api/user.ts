@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export const login = (data: LoginRequest) => request.post<UserInfo>({ url: '/user/login', data })
+export const login = (data: LoginRequest) => request.post<LoginResponse>({ url: '/user/login', data })
 
 export const getUserInfo = () => request.get<UserInfo>({ url: '/user/info' })
 

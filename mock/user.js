@@ -42,7 +42,7 @@ module.exports = [
       const token = headers.token
       if (
         token ===
-        '2eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJpZCI6IjE3NzI1MTA4ODI3MzEyOTA2MjUifV0sImlhdCI6MTcxOTY1NTU3MCwiZXhwIjoxNzIwMTA4Nzk5LCJhdWQiOiIiLCJpc3MiOiIiLCJzdWIiOiIifQ.DOU_oCGirCZ_S-xxv1N9_drxHYc53Fsx8W_B66brODo'
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjpbeyJpZCI6IjE3NzI1MTA4ODI3MzEyOTA2MjUifV0sImlhdCI6MTcxOTY1NTU3MCwiZXhwIjoxNzIwMTA4Nzk5LCJhdWQiOiIiLCJpc3MiOiIiLCJzdWIiOiIifQ.DOU_oCGirCZ_S-xxv1N9_drxHYc53Fsx8W_B66brODo'
       ) {
         return {
           code: 1,
@@ -51,7 +51,7 @@ module.exports = [
             id: '1772510882731290625',
             username: 'admin',
             nickname: '管理员',
-            roleId: '1',
+            roleId: 1,
             phoneNumber: '13393837465',
             avatar: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
           },

@@ -6,16 +6,14 @@ import en from 'element-plus/es/locale/lang/en'
 import { useThemeStore } from './store/theme'
 
 const localeStore = useLocaleStore()
-const lang = computed(() => {
-  return localeStore.locale === 'zh-cn' ? zhCn : en
-})
+const locale = computed(() => (localeStore.locale === 'zh-cn' ? zhCn : en))
 
 const themeStore = useThemeStore()
 themeStore.initTheme()
 </script>
 
 <template>
-  <el-config-provider :locale="lang">
+  <el-config-provider :locale="locale">
     <RouterView />
   </el-config-provider>
 </template>

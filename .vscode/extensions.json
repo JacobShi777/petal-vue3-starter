@@ -4,6 +4,7 @@
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "editorconfig.editorconfig",
-    "wiensss.region-highlighter"
+    "wiensss.region-highlighter",
+    "lokalise.i18n-ally"
   ]
 }

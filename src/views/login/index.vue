@@ -17,7 +17,8 @@ const form = ref<LoginRequest>({
 })
 
 const handleLogin = async () => {
-  userStore.login(form.value)
+  const res = await userStore.login(form.value)
+  ElMessage.success(t('common.user.login.success'))
 }
 
 const handleTest = async () => {

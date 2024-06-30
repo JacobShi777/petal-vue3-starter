@@ -8,12 +8,15 @@
   // 下面是prettier的设置
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode", // 将prettier设置为默认格式化工具
-  "i18n-ally.localesPaths": ["src/locales"]
-  // "i18n-ally.keystyle": "nested",
-  // "i18n-ally.namespace": true,
-  // "i18n-ally.enabledParsers": ["json", "js", "ts"],
-  // "i18n-ally.sortKeys": true,
-  // "i18n-ally.sourceLanguage": "en",
-  // "i18n-ally.displayLanguage": "zh-cn",
-  // "i18n-ally.extract.keygenStyle": "camelCase"
+  "i18n-ally.localesPaths": ["src/locales/common", "src/locales/business"],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.namespace": true,
+  "i18n-ally.enabledParsers": ["json", "js", "ts"],
+  "i18n-ally.sortKeys": true,
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.displayLanguage": "zh-cn"
+  // "i18n-ally.extract.keygenStyle": "camelCase",
+  // "i18n-ally.enabledFrameworks": ["vue", "react"],
+  // "god.tsconfig": "./tsconfig.json",
+  // "vue-i18n.i18nPaths": "src/locales"
 }

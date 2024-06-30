@@ -9,4 +9,5 @@ export default {
   'common.user.register': 'Register',
   'common.user.username': 'Username',
   'common.user.password': 'Password',
+  'common.user.login.required': 'Please login first',
 }

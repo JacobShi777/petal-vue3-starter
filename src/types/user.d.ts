@@ -7,11 +7,11 @@ interface LoginResponse {
   token: string
 }
 
-interface UserInfo {
+type UserInfo = {
   id: string
   username: string
   nickname: string
-  roleId: number
+  roleId: UserRoleEnum
   phoneNumber: string
   avatar: string
 }

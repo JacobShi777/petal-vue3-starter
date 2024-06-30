@@ -2,14 +2,15 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import * as api from '@/api/user'
 import { setToken, removeToken } from '@/utils'
-import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { UserRoleEnum } from '@/constants/user'
+import store from '.'
 
 export const useUserStore = defineStore('user', () => {
   const token = ref<string>('')
+  const role = ref<UserRoleEnum>()
   const userInfo = ref<UserInfo>()
 
-  const { t } = useI18n()
   const router = useRouter()
 
   const login = async (data: LoginRequest) => {
@@ -17,18 +18,20 @@ export const useUserStore = defineStore('user', () => {
     if (res.code === 1) {
       token.value = res.data.token
       setToken(res.data.token)
-      ElMessage.success(t('common.user.login.success'))
       router.push({ path: '/' })
     } else {
       ElMessage.error(res.msg)
     }
+    return res
   }
 
   const getUserInfo = async () => {
     const res = await api.getUserInfo()
     if (res.code === 1) {
       userInfo.value = res.data
+      role.value = res.data.roleId
     } else {
+      role.value = UserRoleEnum.GUEST
       ElMessage.error(res.msg)
     }
   }
@@ -37,13 +40,16 @@ export const useUserStore = defineStore('user', () => {
     token.value = ''
     userInfo.value = undefined
     removeToken()
-    console.log('11')
     router.push('/login')
   }
 
   return {
+    token,
+    role,
     login,
     getUserInfo,
     logout,
   }
 })
+
+export const useUserStoreHook = () => useUserStore(store)
