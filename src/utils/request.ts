@@ -34,10 +34,10 @@ service.interceptors.response.use(
   },
 )
 
-const request2 = <T>(config: AxiosRequestConfig): Promise<ApiResponse<T>> => {
+const sendRequest = <T>(config: AxiosRequestConfig): Promise<ApiResponse<T>> => {
   const token = getToken()
   const baseConfig: AxiosRequestConfig = {
-    baseURL: '/api',
+    baseURL: import.meta.env.VITE_PROXY_KEY,
     timeout: 5000,
     headers: {
       token: token ? `${token}` : undefined,
@@ -59,16 +59,16 @@ const request2 = <T>(config: AxiosRequestConfig): Promise<ApiResponse<T>> => {
 
 const request = {
   get<T = any>(config: AxiosRequestConfig): Promise<ApiResponse<T>> {
-    return request2<T>({ ...config, method: 'get' })
+    return sendRequest<T>({ ...config, method: 'get' })
   },
   post<T = any>(config: AxiosRequestConfig): Promise<ApiResponse<T>> {
-    return request2({ ...config, method: 'post' })
+    return sendRequest({ ...config, method: 'post' })
   },
   put<T = any>(config: AxiosRequestConfig): Promise<ApiResponse<T>> {
-    return request2({ ...config, method: 'put' })
+    return sendRequest({ ...config, method: 'put' })
   },
   delete<T = any>(config: AxiosRequestConfig): Promise<ApiResponse<T>> {
-    return request2({ ...config, method: 'delete' })
+    return sendRequest({ ...config, method: 'delete' })
   },
 }
 
