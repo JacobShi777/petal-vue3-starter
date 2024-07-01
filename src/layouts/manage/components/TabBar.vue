@@ -1,16 +1,33 @@
 <script lang="ts" setup>
 import { Close } from '@element-plus/icons-vue'
+import { useTabStore } from '@/store/tab'
+import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+const tabStore = useTabStore()
+const route = useRoute()
+const router = useRouter()
+
+const handleClose = (fullPath: string) => {
+  tabStore.removeTab(fullPath)
+  if (route.fullPath === fullPath) {
+    router.push(tabStore.tabs[tabStore.tabs.length - 1].fullPath)
+  }
+}
 </script>
 
 <template>
   <div class="tab-wrapper">
-    <div class="tab active">
-      <div>首页</div>
-      <el-icon class="close"><Close /></el-icon>
-    </div>
-    <div class="tab">
-      <div>管理</div>
-      <el-icon class="close"><Close /></el-icon>
+    <div
+      class="tab"
+      :class="{ active: route.fullPath === item.fullPath }"
+      v-for="item in tabStore.tabs"
+      :key="item.fullPath"
+      @click="router.push(item.fullPath)"
+    >
+      <div>{{ item.title && t(item.title) }}</div>
+      <el-icon class="close" @click.stop="handleClose(item.fullPath)"><Close /></el-icon>
     </div>
   </div>
 </template>
@@ -25,6 +42,7 @@ import { Close } from '@element-plus/icons-vue'
   font-size: 14px;
   padding: 0 20px;
   align-items: flex-end;
+  overflow-x: auto;
 }
 
 .tab {
@@ -39,12 +57,17 @@ import { Close } from '@element-plus/icons-vue'
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-shrink: 0;
 
   &:hover {
-    background-color: var(--el-color-primary-light-8);
+    background-color: var(--el-color-primary-light-9);
 
     .close {
       visibility: visible;
+
+      &:hover {
+        color: var(--el-color-primary-light-5);
+      }
     }
   }
 
@@ -55,10 +78,22 @@ import { Close } from '@element-plus/icons-vue'
 
   // 选中
   &.active {
-    background-color: var(--el-color-primary-light-8);
+    background-color: var(--el-color-primary-light-9);
 
     .close {
       visibility: visible;
+    }
+  }
+
+  &:only-child {
+    background-color: var(--el-color-primary-light-9);
+
+    .close {
+      visibility: hidden;
+
+      &:hover {
+        visibility: hidden;
+      }
     }
   }
 }

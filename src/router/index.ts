@@ -17,17 +17,24 @@ export const routes: RouteRecordRaw[] = [
     meta: {
       roles: UserRoleEnum.GUEST,
       hideInNavbar: true,
+      hideInTab: true,
     },
   },
   {
     path: '/',
     component: ManageLayout,
+    meta: {
+      title: 'dashboard',
+      elevateChildren: true,
+    },
     children: [
       {
         path: '',
         component: () => import('@/views/dashboard/index.vue'),
         meta: {
-          title: '首页',
+          title: 'dashboard',
+          svgIcon: 'dashboard',
+          svgSize: '20px',
         },
       },
     ],
@@ -36,28 +43,29 @@ export const routes: RouteRecordRaw[] = [
     path: '/element-plus',
     component: ManageLayout,
     meta: {
-      title: 'Element Plus',
+      title: 'ep',
+      svgIcon: 'element-plus',
     },
     children: [
       {
         path: 'table',
         component: () => import('@/views/element-plus/table/index.vue'),
         meta: {
-          title: '表格',
+          title: 'ep.table',
         },
       },
       {
         path: 'form',
         component: () => import('@/views/element-plus/form/index.vue'),
         meta: {
-          title: '表单',
+          title: 'ep.form',
         },
       },
       {
         path: 'tag',
         component: () => import('@/views/element-plus/tag/index.vue'),
         meta: {
-          title: '标签',
+          title: 'ep.tag',
           roles: [UserRoleEnum.NORMAL],
         },
       },
@@ -67,35 +75,36 @@ export const routes: RouteRecordRaw[] = [
     path: '/menu',
     component: ManageLayout,
     meta: {
-      title: '多级路由',
+      title: 'menu',
+      svgIcon: 'menu',
     },
     children: [
       {
         path: 'menu1',
         component: () => import('@/views/menu/menu1/index.vue'),
         meta: {
-          title: '菜单1',
+          title: 'menu.menu1',
         },
       },
       {
         path: 'menu2',
         component: () => import('@/views/menu/menu2/index.vue'),
         meta: {
-          title: '菜单2',
+          title: 'menu.menu2',
         },
         children: [
           {
             path: 'menu2-1',
             component: () => import('@/views/menu/menu2/menu21/index.vue'),
             meta: {
-              title: '菜单2-1',
+              title: 'menu.menu2.menu2-1',
             },
           },
           {
             path: 'menu2-2',
             component: () => import('@/views/menu/menu2/menu22/index.vue'),
             meta: {
-              title: '菜单2-2',
+              title: 'menu.menu2.menu2-2',
             },
           },
         ],

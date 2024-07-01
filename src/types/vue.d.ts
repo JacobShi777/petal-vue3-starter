@@ -42,5 +42,31 @@ declare module 'vue-router' {
      * @type {boolean}
      */
     hideInNavbar?: boolean
+    /**
+     * 是否在Tab中隐藏
+     * @type {boolean}
+     */
+    hideInTab?: boolean
+    /**
+     * - 当children存在时且只有一个子路由时，是否将子路由提升到当前路由
+     * - 注意: 当 elevateChildren 为true时, children 必须有仅且有一个元素
+     * @type {boolean}
+     */
+    elevateChildren?: boolean
+    /**
+     * Element Plus 的 Icon
+     * @type {string}
+     */
+    elIcon?: string
+    /**
+     * Svg 图标
+     * @type {string}
+     */
+    svgIcon?: string
+    /**
+     * Svg 图标大小
+     * @type {string}
+     */
+    svgSize?: string
   }
 }

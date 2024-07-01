@@ -30,13 +30,16 @@ const filterAuthRoutesRecursive = (routes: RouteRecordRaw[], role: UserRoleEnum)
 }
 
 export const useRouteStore = defineStore('route', () => {
+  /**
+   * 显示在导航栏的路由
+   * @type {RouteRecordRaw[]}
+   */
   const routes = ref<RouteRecordRaw[]>()
 
   const userStore = useUserStore()
 
   const initRoutes = () => {
     routes.value = filterAuthRoutesRecursive(staticRoutes, userStore.role!)
-    console.log(routes.value)
   }
 
   return {

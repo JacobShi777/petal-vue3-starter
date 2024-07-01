@@ -3,6 +3,8 @@ import { useUserStore } from '@/store/user'
 import { UserRoleEnum } from '@/constants/user'
 import { hasPermission, useRouteStore } from '@/store/route'
 import { getToken } from '@/utils'
+import { useTabStore } from '@/store/tab'
+import { useBreadcrumbStore } from '@/store/breadcrumb'
 
 export const initPerssion = (router: Router) => {
   router.beforeEach(async (to, from, next) => {
@@ -28,5 +30,19 @@ export const initPerssion = (router: Router) => {
     } else {
       return next({ path: '/404', replace: true })
     }
+  })
+
+  router.afterEach((to) => {
+    const tabStore = useTabStore()
+    const breadcrumbStore = useBreadcrumbStore()
+
+    if (!to.meta.hideInTab) {
+      tabStore.addTab({
+        fullPath: to.fullPath,
+        path: to.path,
+        title: to.meta.title || '',
+      })
+    }
+    breadcrumbStore.setMatched(to.matched)
   })
 }
