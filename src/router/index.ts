@@ -57,8 +57,10 @@ export const routes: RouteRecordRaw[] = [
       {
         path: 'form',
         component: () => import('@/views/element-plus/form/index.vue'),
+        name: 'ep-form',
         meta: {
           title: 'ep.form',
+          keepAlive: true,
         },
       },
       {

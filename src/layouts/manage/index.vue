@@ -3,7 +3,9 @@ import Navbar from './components/Navbar/index.vue'
 import Header from './components/Header.vue'
 import { useSettingStore } from '@/store/setting'
 import { computed, onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const animateClass = ref(false)
 const settingStore = useSettingStore()
 const navbarWidth = computed(() => {
@@ -23,7 +25,12 @@ onMounted(() => {
     <div class="right" :class="{ animate: animateClass }">
       <Header />
       <div class="app-content">
-        <RouterView />
+        <router-view v-slot="{ Component, route }">
+          <keep-alive>
+            <component v-if="route.meta.keepAlive" :is="Component" :key="route.path" />
+          </keep-alive>
+          <component v-if="!route.meta.keepAlive" :is="Component" :key="route.path" />
+        </router-view>
       </div>
     </div>
   </div>

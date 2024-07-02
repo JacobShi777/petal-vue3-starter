@@ -68,5 +68,11 @@ declare module 'vue-router' {
      * @type {string}
      */
     svgSize?: string
+    /**
+     * keepAlive 组件缓存
+     * - 默认为 false
+     * @type {boolean}
+     */
+    keepAlive?: boolean
   }
 }
