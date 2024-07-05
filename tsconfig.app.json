@@ -1,4 +1,8 @@
 {
+  // https://www.typescriptlang.org/tsconfig/
+  // tsconfig.json的文档
+  // 这个文档很详细，特别是compilerOptions部分，每个配置都举有例子
+
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "env.d.ts",
@@ -14,11 +18,32 @@
   "compilerOptions": {
     "composite": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
-
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["element-plus/global"]
+
+    "target": "esnext", // 编译后的代码使用的 ECMAScript 版本
+    "module": "esnext", // 编译后的代码使用的模块系统
+    // 指定了 TypeScript 编译器应该包含的库文件，这些库文件是 TypeScript 的声明文件（.d.ts），它们为 JavaScript 的全局变量和内置对象提供了类型信息。通过设置 lib 选项，你可以控制 TypeScript 编译器认为在运行时环境中可用的 API 集合。
+    "lib": [
+      "esnext", // 支持新语法，如 const bazValue = obj?.foo?.bar?.baz ?? 'default value'
+      "dom", // 如这里的 "dom" 提供了全局变量如 document, window, HTMLElement, addEventListener 等
+      "dom.iterable" // 扩展了 "dom" 库，添加了对 DOM 集合的可迭代操作的支持。这意味着你可以使用 ES2015+ 的迭代特性（如 for...of 循环和扩展运算符 ...）来遍历 DOM 集合
+    ],
+    // types 选项用于控制全局环境中可用的类型声明，主要影响的是全局变量的类型检查和自动导入建议。因为默认 node_modules/@types/ 下的都会导入。指定后：性能优化、避免全局命名空间污染、精确控制。
+    // 这不影响 import 语句，只影响全局变量的类型检查和自动导入建议。
+    // 比如我们使用 lodash-es ，会同时安装 lodash-es 和 @types/lodash-es ，虽然 lodash-es 没有在这里的 types 中声明，但特意 import _ from 'lodash-es' 时，TypeScript 仍然会使用这些类型定义来提供类型检查和代码提示。
+    "types": ["node", "vite/client", "element-plus/global"],
+
+    "strict": true, // 启用所有严格类型检查选项
+    // "allowUnreachableCode": true, // 允许在控制流语句中出现不可到达的代码
+    "alwaysStrict": true, // 以严格模式解析并为每个源文件生成"use strict"语句
+    "noImplicitAny": true, // 不允许隐式的any类型
+    "noImplicitThis": true, // 当this表达式的值为any类型时，生成一个错误
+    "noImplicitReturns": true // 在函数中所有的分支都必须有返回值
+    // "skipLibCheck": true // 跳过所有的声明文件（.d.ts）的类型检查。在大型项目中，跳过库文件的类型检查可以显著减少编译时间。
+    // "noUnusedLocals": true // 检测未使用的局部变量
+    // "noUnusedParameters": true // 检测未使用的函数参数
   }
 }
